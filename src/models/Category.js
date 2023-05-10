@@ -5,8 +5,8 @@
  * @returns
  */
 module.exports = (sequelize, DataTypes) => {
-  const Categories = sequelize.define(
-    'Categories',
+  const Category = sequelize.define(
+    'Category',
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       name: DataTypes.STRING,
@@ -17,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
-  return Categories;
+  return Category;
 };
