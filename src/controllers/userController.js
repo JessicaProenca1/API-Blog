@@ -17,7 +17,7 @@ const createdUSer = async (req, res) => {
   }
 };
 
-const findUsers = async (req, res) => {
+const findUsers = async (_req, res) => {
   try {
     const allUsers = await userService.findUsers();
     if (!allUsers) throw Error;
@@ -27,7 +27,19 @@ const findUsers = async (req, res) => {
   }
 };
 
+const findUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const oneUser = await userService.findUserById(id);
+    if (!oneUser) throw Error;
+    return res.status(200).json(oneUser);
+  } catch (error) {
+    return res.status(404).json({ message: 'User does not exist' });
+  }
+};
+
 module.exports = {
   createdUSer,
   findUsers,
+  findUserById,
 };

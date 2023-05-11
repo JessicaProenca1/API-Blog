@@ -18,4 +18,6 @@ routers.post(
 
 routers.get('/', tokenValidation, userController.findUsers);
 
+routers.get('/:id', tokenValidation, userController.findUserById);
+
 module.exports = routers;
