@@ -19,14 +19,11 @@ const createdUSer = async (req, res) => {
 
 const findUsers = async (req, res) => {
   try {
-      const allUsers = await userService.findUsers();
-      if (!allUsers) throw Error;
-      res.status(200).json(allUsers);
+    const allUsers = await userService.findUsers();
+    if (!allUsers) throw Error;
+    return res.status(200).json(allUsers);
   } catch (error) {
-    res.status(500).json({
-      message: 'Erro ao buscar usuários no banco',
-      error: error.message,
-    });
+    return res.status(500).json({ message: 'Erro interno Controller', error: error.message });
   }
 };
 
