@@ -1,11 +1,9 @@
 const express = require('express');
-// const courseController = require('../controllers/course.controller');
+const loginController = require('../controllers/loginController');
+const { incompleteLogin } = require('../middlewares/loginMiddleware');
 
 const routers = express.Router();
 
-// routers.post('/', courseController.createCourse);
-// routers.get('/', courseController.getCourses);
-// routers.put('/:id', courseController.updateCourse);
-// routers.delete('/:id', courseController.removeCourse);
+routers.post('/', incompleteLogin, loginController.login);
 
 module.exports = routers;
