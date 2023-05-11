@@ -14,6 +14,9 @@ const createdUSer = async ({ displayName, email, password, image }) => {
   return created;
 };
 
+const findUsers = () => User.findAll();
+
 module.exports = {
   createdUSer,
+  findUsers,
 };

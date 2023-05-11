@@ -4,6 +4,7 @@ const {
   displayNameValidation, 
   emailValidation, 
   passwordValidation } = require('../middlewares/userMiddleware');
+const { tokenValidation } = require('../middlewares/tokenMiddleware');
 
 const routers = express.Router();
 
@@ -14,5 +15,7 @@ routers.post(
   passwordValidation, 
   userController.createdUSer,
   );
+
+routers.get('/', tokenValidation, userController.findUsers);
 
 module.exports = routers;

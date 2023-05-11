@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const incompleteLogin = async (req, res, next) => {
+const incompleteLogin = (req, res, next) => {
   const { email, password } = req.body;
 
   const loginValidation = Joi.object({

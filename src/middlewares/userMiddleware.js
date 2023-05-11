@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const displayNameValidation = async (req, res, next) => {
+const displayNameValidation = (req, res, next) => {
   const { displayName } = req.body;
 
   const userValidation = Joi.object({
@@ -15,7 +15,7 @@ const displayNameValidation = async (req, res, next) => {
   next();
 }; 
 
-const emailValidation = async (req, res, next) => {
+const emailValidation = (req, res, next) => {
   const { email } = req.body;
 
   const userValidation = Joi.object({
@@ -32,7 +32,7 @@ const emailValidation = async (req, res, next) => {
   next();
 }; 
 
-const passwordValidation = async (req, res, next) => {
+const passwordValidation = (req, res, next) => {
   const { password } = req.body;
 
   const userValidation = Joi.object({
