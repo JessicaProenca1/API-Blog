@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       content: DataTypes.STRING,
       published: DataTypes.STRING,
       updated: DataTypes.STRING,
-      user_id: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
     },
     {
       timestamps: false,
