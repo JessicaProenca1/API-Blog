@@ -31,7 +31,19 @@ const findAllPosts = async (_req, res) => {
   }
 };
 
+const findPostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const onePost = await postService.findPostById(id);
+    if (!onePost) throw Error;
+    return res.status(200).json(onePost);
+  } catch (error) {
+    return res.status(404).json({ message: 'Post does not exist' });
+  }
+};
+
 module.exports = {
   newPost,
   findAllPosts,
+  findPostById,
 };

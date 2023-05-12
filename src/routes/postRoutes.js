@@ -8,4 +8,6 @@ routers.post('/', tokenValidation, postController.newPost);
 
 routers.get('/', tokenValidation, postController.findAllPosts);
 
+routers.get('/:id', tokenValidation, postController.findPostById);
+
 module.exports = routers;
