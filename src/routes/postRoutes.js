@@ -6,6 +6,6 @@ const routers = express.Router();
 
 routers.post('/', tokenValidation, postController.newPost);
 
-// routers.get('/', tokenValidation, categoriesController.findCategories);
+routers.get('/', tokenValidation, postController.findAllPosts);
 
 module.exports = routers;
