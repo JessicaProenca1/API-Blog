@@ -1,24 +1,21 @@
-const { BlogPost, User } = require('../models'); 
+const { BlogPost, PostCategory, sequelize } = require('../models'); 
 
 const newPost = async ({ title, content, categoryIds, userId }) => {
   try {
-      const post = await BlogPost.create(
-        { title, content, categoryIds, userId },
-        {
-          include: [
-            { model: User, as: 'users' },
-          ],
-        },
-        );
-      return post;  
+    const result = await sequelize.transaction(async (t) => {
+      const post = await BlogPost.create({ title, content, userId }, { transaction: t });
+
+      const promises = categoryIds.map((element) => PostCategory
+        .create({ postId: post.id, categoryId: element }, { transaction: t }));
+      await Promise.all(promises);
+      return post;
+    });
+    return result;    
   } catch (error) {
     console.log(error); 
   }
 };
 
-// const findCategories = () => Category.findAll();
-
 module.exports = {
   newPost,
-  // findCategories,
 };

@@ -4,7 +4,6 @@ const categoriesService = require('../services/categoriesService');
 const newPost = async (req, res) => {
     const { title, content, categoryIds } = req.body;
     const { data: { userId } } = req.user;
-    console.log(req.user);
       
     if (!title || !content || !categoryIds) {
       return res.status(400).json({ message: 'Some required fields are missing' });
