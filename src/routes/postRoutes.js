@@ -10,4 +10,6 @@ routers.get('/', tokenValidation, postController.findAllPosts);
 
 routers.get('/:id', tokenValidation, postController.findPostById);
 
+routers.put('/:id', tokenValidation, postController.editPostById);
+
 module.exports = routers;

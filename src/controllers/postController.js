@@ -42,8 +42,26 @@ const findPostById = async (req, res) => {
   }
 };
 
+const editPostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    const { data: { userId } } = req.user;
+    if (Number(userId) === Number(id)) {
+      if (!title || !content) throw Error;
+      await postService.editPostById(id, title, content);
+      const post = await postService.findPostById(id);
+      return res.status(200).json(post);
+    }     
+      return res.status(401).json({ message: 'Unauthorized user' });
+  } catch (error) {
+    return res.status(400).json({ message: 'Some required fields are missing' });
+  }
+};
+
 module.exports = {
   newPost,
   findAllPosts,
   findPostById,
+  editPostById,
 };
