@@ -65,13 +65,13 @@ const deletePostById = async (req, res) => {
     const { data: { userId } } = req.user;
     const postOwner = await postService.findPostById(id);
     if (postOwner) {
-    if (Number(userId) === Number(postOwner.userId)) {
-      await postService.deletePostById(id);
+      if (Number(userId) === Number(postOwner.userId)) {
+        await postService.deletePostById(id);
       return res.status(204).json();
     }
-      return res.status(400).json({ message: 'Unauthorized user' });
+      return res.status(401).json({ message: 'Unauthorized user' });
     }     
-      return res.status(401).json({ message: 'Post does not exist' });
+      return res.status(404).json({ message: 'Post does not exist' });
 };
 
 module.exports = {
