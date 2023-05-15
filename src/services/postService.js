@@ -45,9 +45,15 @@ const editPostById = async (id, title, content) => {
   return qtdUpdated > 0;
 };
 
+const deletePostById = async (id) => {
+  const result = await BlogPost.destroy({ where: { id } });
+  return result;
+};
+
 module.exports = {
   newPost,
   findAllPosts,
   findPostById,
   editPostById,
+  deletePostById,
 };

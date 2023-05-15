@@ -23,8 +23,6 @@ app.use('/categories', categoriesRoutes);
 
 app.use('/post', postRoutes);
 
-app.put('/post', postRoutes);
-
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

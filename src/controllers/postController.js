@@ -47,7 +47,8 @@ const editPostById = async (req, res) => {
     const { id } = req.params;
     const { title, content } = req.body;
     const { data: { userId } } = req.user;
-    if (Number(userId) === Number(id)) {
+    const postOwner = await postService.findPostById(id);
+    if (Number(userId) === Number(postOwner.userId)) {
       if (!title || !content) throw Error;
       await postService.editPostById(id, title, content);
       const post = await postService.findPostById(id);
@@ -59,9 +60,24 @@ const editPostById = async (req, res) => {
   }
 };
 
+const deletePostById = async (req, res) => {
+    const { id } = req.params;
+    const { data: { userId } } = req.user;
+    const postOwner = await postService.findPostById(id);
+    if (postOwner) {
+    if (Number(userId) === Number(postOwner.userId)) {
+      await postService.deletePostById(id);
+      return res.status(204).json();
+    }
+      return res.status(400).json({ message: 'Unauthorized user' });
+    }     
+      return res.status(401).json({ message: 'Post does not exist' });
+};
+
 module.exports = {
   newPost,
   findAllPosts,
   findPostById,
   editPostById,
+  deletePostById,
 };
