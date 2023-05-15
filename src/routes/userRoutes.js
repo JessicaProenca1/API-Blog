@@ -20,4 +20,6 @@ routers.get('/', tokenValidation, userController.findUsers);
 
 routers.get('/:id', tokenValidation, userController.findUserById);
 
+routers.delete('/me', tokenValidation, userController.deleteUser);
+
 module.exports = routers;
